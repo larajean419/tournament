@@ -40,11 +40,20 @@ export class TeamController{
         const teamId = req.params.id
 
         await teamRepo.find({
-            relations : ["players"]
+            relations : ["players"],
+            where : {id : teamId},
         })
         .then((teams)=>res.json(teams))
         .catch(err => res.json(err))
-
     } 
+
+    static desolveTeam = async(req:Request,res:Response) =>{
+
+        
+        getRepository(Team).delete(req.params.id)
+        .then(()=> res.json({"success": "team disolved"}))
+        .catch(err => res.json(err.message))
+        
+    }
 
 }
