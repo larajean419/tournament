@@ -26,4 +26,15 @@ export  class PlayerController{
         .then(() =>res.json({"success":"player added !"}))
         .catch(err => res.json(err.message)) 
     }
+
+    static allPlayers  = async(req:Request,res:Response) =>{
+        const playerRepo = getRepository(Player)
+
+        await playerRepo.find()
+        .then(players => res.json(players))
+        .catch(err => res.json(err.message))
+    } 
+
+    
+
 }

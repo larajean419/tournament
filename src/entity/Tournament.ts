@@ -3,10 +3,12 @@ import { Participation } from "./Participation";
 @Entity()
 export class Tournament{
 
+    
+
     @PrimaryGeneratedColumn()
     id : number
 
-    @Column()
+    @Column({unique : true})
     name : string
 
     @Column()
@@ -15,14 +17,14 @@ export class Tournament{
     @Column()
     location : string
 
-    @Column() 
+    @Column({nullable : true}) 
     flag : string
 
-    @Column() 
-    begin : Date
+    @Column({type: "date"}) 
+    begin : string
 
-    @Column()
-    end : Date
+    @Column({type : "date"})
+    end : string
 
     @Column()
     isAnnounced : false

@@ -4,8 +4,10 @@ import * as express from "express"
 import * as bodyParser from "body-parser"
 import * as cors from "cors"
 
-import  teamRouter from "./routes/Team.route";
+import  teamRouter from "./routes/Team.route"
 import playerRouter from "./routes/Player.route"
+import  participationRouter  from "./routes/Participation.route"
+import tournamentRouter from "./routes/Tournament.route";
 
 createConnection().then(async connection => {
 
@@ -24,5 +26,7 @@ createConnection().then(async connection => {
 
    app.use("/teams",teamRouter)
    app.use("/players",playerRouter)
+   app.use("/tournament",participationRouter)
+   app.use("/tournaments",tournamentRouter)
 
 }).catch(error => console.log(error));

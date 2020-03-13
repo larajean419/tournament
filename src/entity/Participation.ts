@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 
-import {Player} from "./Player"
+import {Team} from "./Team"
 import { Tournament } from "./Tournament";
 import { TournamentYear } from "./TournamentYear";
 
@@ -11,7 +11,7 @@ export class Participation{
     participationId : number
 
     @Column()
-    playerId : number
+    teamId : number
 
     @Column()
     tournamentId : number
@@ -19,8 +19,8 @@ export class Participation{
     @Column()
     tournamentYearId : number
 
-    @ManyToOne(type => Player, player => player.participations)
-    player  : Player
+    @ManyToOne(type => Team, team => team.participations)
+    team  : Team
 
     @ManyToOne(type => Tournament, tournament => tournament.participations)
     tournament  : Tournament

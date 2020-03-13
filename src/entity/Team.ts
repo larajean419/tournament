@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
 import {Player} from "./Player"
+import { Participation } from "./Participation";
 @Entity()
 export class Team {
 
@@ -26,6 +27,10 @@ export class Team {
     //relation avec player
     @OneToMany(type => Player, player => player.team)
     players : Player[]
+
+    //relation ternaire 
+    @OneToMany(type => Participation, participations => participations.team)
+     participations : Participation[] 
 
 
 }

@@ -29,9 +29,22 @@ export class TeamController{
     static allTeams = async(req:Request,res:Response) =>{
         const teamRepo = getRepository(Team)
 
-        await teamRepo.find().then((teams)=>res.json(teams)).catch(err => res.json(err))
+            await teamRepo.find()
+            .then((teams)=>res.json(teams))
+            .catch(err => res.json(err))
+            
 
-        
     }
+     static teamPlayers   = async(req:Request,res:Response) =>{
+        const teamRepo = getRepository(Team)
+        const teamId = req.params.id
+
+        await teamRepo.find({
+            relations : ["players"]
+        })
+        .then((teams)=>res.json(teams))
+        .catch(err => res.json(err))
+
+    } 
 
 }
