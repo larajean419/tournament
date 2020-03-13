@@ -7,7 +7,7 @@ import { Team } from "../entity/Team"
 export  class PlayerController{
 
     static add = async(req:Request,res:Response) =>{
-        let {firstname,lastname,description} = req.body
+        let {firstname,lastname,description,teamId} = req.body
 
         
          const playerRepo = getRepository(Player)
@@ -19,7 +19,7 @@ export  class PlayerController{
 
         //ajout de sa team
         let team = new Team()
-        team.id = 4
+        team.id = teamId
         player.team = team
 
         await playerRepo.save(player)

@@ -25,7 +25,7 @@ export class Team {
     description : string
 
     //relation avec player
-    @OneToMany(type => Player, player => player.team)
+    @OneToMany(type => Player, player => player.team,  {onDelete : "CASCADE"})
     players : Player[]
 
     //relation ternaire 

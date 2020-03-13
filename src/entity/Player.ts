@@ -28,10 +28,8 @@ export class Player{
     description : string
 
     //relation avec team
-
-    @ManyToOne(type => Team, team => team.players)
+     @ManyToOne(type => Team, team => team.players)
     team : Team
-
 
     
 }
