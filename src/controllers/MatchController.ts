@@ -6,16 +6,22 @@ import { Contest } from "../entity/Contest";
 export class MatchController{
     
     static matchWinner = async(req:Request,res:Response) =>{
-
+        const tournamentId = req.params.tournamentId
         const matchRepo = getRepository(Match)
-
-        let allContest = await matchRepo
-        .createQueryBuilder("match")
-        .innerJoinAndSelect("match.versus","versus")
-        .getMany()
-        
-        res.json(allContest
-        )
+        const leg:string = req.params.leg
+       
+     try{
+    let wi =  await matchRepo
+    .createQueryBuilder("match")
+    .innerJoinAndSelect("match.versus","contest")
+    .where("match.leg = :leg",{leg : leg})
+    .andWhere("contest.tournamentId = :tid",{tid : tournamentId})
+    .andWhere("contest.isTeamActive = true")
+    .getMany()
+    
+    res.json(wi)
+    }
+ catch(err) {res.json(err.message)} 
        
     }
 
@@ -31,4 +37,6 @@ export class MatchController{
          .catch(err => res.json(err.message))
        
     }
+
+  
 }

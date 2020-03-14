@@ -10,7 +10,7 @@ tournamentRouter.post("/draw",TournamentController.setContestDraw)
 tournamentRouter.get("/contest",TournamentController.contestSheet)
 
 //get match winner
-tournamentRouter.get("/winner",MatchController.matchWinner)
+tournamentRouter.get("/winner/:tournamentId&:leg",MatchController.matchWinner)
 
 tournamentRouter.post("/scoring",MatchController.scoring)
 //setup team contest draw

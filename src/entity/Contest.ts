@@ -21,6 +21,9 @@ export class Contest{
     @Column({type: "integer",nullable : true})
     score : number
 
+    @Column({nullable : true})
+    isTeamActive : boolean
+
    @ManyToOne(type => Team, team => team.versus)
    team : Team
 
