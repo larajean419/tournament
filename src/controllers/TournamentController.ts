@@ -71,7 +71,7 @@ export class TournamentController{
           relations : ["versus"]
        })
 
-       .then(matches => res.json({"team" :matches}))
+       .then(matches => res.json(matches))
        .catch(err => res.json(err.message)) 
    }
 
