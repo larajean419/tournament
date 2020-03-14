@@ -1,6 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
 import {Player} from "./Player"
 import { Participation } from "./Participation";
+import { Contest } from "./Contest";
 @Entity()
 export class Team {
 
@@ -28,9 +29,12 @@ export class Team {
     @OneToMany(type => Player, player => player.team,  {onDelete : "CASCADE"})
     players : Player[]
 
-    //relation ternaire 
+    //ternary relation for tournament's registrating
     @OneToMany(type => Participation, participations => participations.team)
      participations : Participation[] 
+
+    @OneToMany(type => Contest, versus => versus.team)
+    versus : Contest[]
 
 
 }

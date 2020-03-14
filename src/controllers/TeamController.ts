@@ -48,12 +48,10 @@ export class TeamController{
     } 
 
     static desolveTeam = async(req:Request,res:Response) =>{
-
-        
         getRepository(Team).delete(req.params.id)
         .then(()=> res.json({"success": "team disolved"}))
         .catch(err => res.json(err.message))
-        
+    
     }
 
 }
