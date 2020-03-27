@@ -38,13 +38,13 @@ export class TournamentController{
    static setContestDraw = async(req:Request,res:Response) =>{
        const contestRepo = getRepository(Contest)
        const matchRepo = getRepository(Match)
-       let {teamId,tournamentId,matchId,leg,score} = req.body
+       let {teamId,tournamentId,matchId,leg} = req.body
 
        let contest = new Contest()
        contest.tournamentId = tournamentId
        contest.teamId = teamId
        contest.matchId = matchId
-       contest.score = score
+       
      
          let match = new Match()
         match.id = matchId
@@ -61,6 +61,9 @@ export class TournamentController{
        await contestRepo.save(contest)
        .then(()=> res.json({"success":"ok"}))
        .catch(err => res.status(400).json(err.message))
+
+
+       //generate all next round
    }
 
    static contestSheet = async(req:Request,res:Response) =>{
@@ -91,8 +94,4 @@ export class TournamentController{
        
    }
 
-    
-  
-   
-  
 }

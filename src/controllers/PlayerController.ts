@@ -35,6 +35,19 @@ export  class PlayerController{
         .catch(err => res.json(err.message))
     } 
 
-    
+    static playerId = async(req:Request,res:Response) =>{
+        const playerRepo = getRepository(Player)
+        const id = req.params.id
 
+        await playerRepo.find({
+            where : {id : id}
+        })
+        .then(player =>{
+            if(!player) res.json("this player doesn't exist")
+            else res.json(player)
+        })
+        .catch(err => res.json(err))
+    }
+
+    
 }

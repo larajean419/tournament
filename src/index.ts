@@ -23,7 +23,6 @@ createConnection().then(async connection => {
        console.log("serveur en écoute ! ")
    })
    
-
    app.use("/teams",teamRouter)
    app.use("/players",playerRouter)
    app.use("/tournament",participationRouter)
